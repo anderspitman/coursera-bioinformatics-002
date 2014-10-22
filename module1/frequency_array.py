@@ -35,6 +35,14 @@ def pattern_to_number(pattern):
         idx_cum += idx
     return idx_cum
 
+def number_to_pattern2(num, k):
+    if k == 1: return idx_to_letter[num]
+    prefix_index = num / N
+    r = num % N
+    prefix_pattern = number_to_pattern2(prefix_index, k - 1)
+    symbol = idx_to_letter[r]
+    return prefix_pattern + symbol
+
 def number_to_pattern(num, k):
     if num >= N**k: return None
     kmer = ''
@@ -45,5 +53,12 @@ def number_to_pattern(num, k):
         num -= (letter_idx * div)
     return kmer
 
-wrapped = wrapper(pattern_to_number, 'ACGCCCTGAGCACCCA')
+#wrapped = wrapper(pattern_to_number, 'ACGCCCTGAGCACCCA')
+
+#for i in range(0, 256):
+#    print number_to_pattern(i, 4)
+#    print number_to_pattern2(i, 4)
+#    print
+
+print number_to_pattern2(7727, 10)
 
