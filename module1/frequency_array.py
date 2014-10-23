@@ -53,12 +53,25 @@ def number_to_pattern(num, k):
         num -= (letter_idx * div)
     return kmer
 
-#wrapped = wrapper(pattern_to_number, 'ACGCCCTGAGCACCCA')
+def computing_frequencies(text, k):
+    num_kmers = len(text)-k+1
+    freq_arr = [ 0 for x in range(0, N**k) ]
+    for i in range(0, num_kmers):
+        pattern = text[i:i+k]
+        idx = pattern_to_number2(pattern)
+        freq_arr[idx] += 1
+    return freq_arr
 
-#for i in range(0, 256):
-#    print number_to_pattern(i, 4)
-#    print number_to_pattern2(i, 4)
-#    print
 
-print number_to_pattern2(7727, 10)
+if __name__ == '__main__':
+    #wrapped = wrapper(pattern_to_number, 'ACGCCCTGAGCACCCA')
+
+    #for i in range(0, 256):
+    #    print number_to_pattern(i, 4)
+    #    print number_to_pattern2(i, 4)
+    #    print
+    text = "AAAATGCGAACTAATACCTCGTTCCAGCGAACTGTCACGCCTAATGCTGATTTTTGCTACTATGTGATGTCCTCTAGCTGCGAGTCGCGAGGAGACATTCTCTAGACCATGCAGGGCGCTTTTATGGCATGTGAGTCTGGACAGGCGGCCTTCTCCGCCCGCGTGGAAGGGTCATCGTCCGGACATGATCCGTACTACGCCCCTACACACCCTGGTTGACACTGGTGTAGATGGGCCCTCATACTATTTTACCGTTGAGTCCTCCTAGTTCCTCAATGAGATTAACATTTCTAGTAGAGATGTTACTACGTGTCATAGGATATGCGCCACTAACGCGATGTTCTTCGGATCACCCATGACTTTACCATCAGCGGCGGACGAAGGTTGCTGCAGCGGTAACCTCTTACCACAGCTCATTCCCGATGGGTTTTATCGTCTTACCTGACACAGTACAAGGTTACTGCCTTTCGCGCTCATAAGTGAGCTTCGTTAAAACACTCTAATCAAATTCTTTGCTTGAACTAGGAGGAATAGTGGCTTAAAGCATTTACGCCAGCTGACGAATGATCCCGAAAGGGATCGGTAACGCCTGAACAGTACGCAGACTCCCCACAAGCCTCGTGGTCTGCAG"
+    freq_arr = computing_frequencies(text, 6)
+    for i in freq_arr:
+        print(i),
 
